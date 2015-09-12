@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Draw the World</title>
+  <!--build:css css/style.min.css-->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- /build -->
+
+</head>
+<body>
+
+<div id="main">
+<div id="toolbar">
+	<div class="tool active-tool">
+		<svg width="512px" height="512px" viewBox="0 0 512 512" viewbox="0 0 512 512" xml:space="preserve" style="margin:10%;width:80%;height:80%;">
+			<path d="M30.822,384.537L0,512l127.442-30.804l334.149-334.155l-96.63-96.645L30.822,384.537z M395.78,142.792L115.188,423.39
+				l-26.57-26.585l280.591-280.582L395.78,142.792z" fill="black" />
+			<path d="M487.1,24.906c-26.703-26.674-63.737-32.907-82.747-13.902l-19.938,19.938l96.634,96.645l19.938-19.938
+				C519.999,88.637,513.777,51.604,487.1,24.906z" fill="black" />
+		</svg>
+		<div class="sub">
+			<div class="subtext"><span id="sizetext">Size:&nbsp;</span><span id="pensize">3</span></div>
+			<div class="slider" id="sizeslider">
+				<div class="bar"></div>
+				<div class="pin" id="sizepin"></div>
+			</div>
+			<div class="clearer"></div>
+		</div>
+	</div>
+	<div class="tool">
+		<svg height="200" width="200" viewbox="0 0 200 200">
+		  <circle cx="100" cy="100" r="60" stroke="black" stroke-width="16" fill="none" />
+		</svg>
+		<div class="sub">
+			<div class="subtool active-subtool">
+				<svg height="200" width="200" viewbox="0 0 200 200">
+				  <circle cx="100" cy="100" r="60" stroke="black" stroke-width="16" fill="none" />
+				</svg>
+			</div>
+			<div class="subtool">
+				<svg height="200" width="200" viewbox="0 0 200 200">
+				  <polyline points="40,160 160,40" stroke="black" stroke-width="16" />
+				</svg>
+			</div>
+			<div class="subtool">
+				<svg height="200" width="200" viewbox="0 0 200 200">
+				  <polyline points="40,40 40,160 160,160 160,40 32,40" stroke="black" stroke-width="16" fill="none" />
+				</svg>
+			</div>
+			<div class="subtool">
+				<svg height="200" width="200" viewbox="0 0 200 200">
+				  <ellipse cx="100" cy="100" rx="70" ry="35" stroke="black" stroke-width="16" fill="none" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="tool">
+		  <svg x="0px" y="0px" width="512px" height="498.617px" viewBox="0 0 512 498.617" enable-background="new 0 0 512 498.617" style="margin:10%;width:80%;height:80%;">
+			<g>
+				<path d="M453.699,236.629c-0.012-0.006-0.023-0.012-0.035-0.018L261.988,44.921h-0.006l0,0c-5.877-5.88-15.4-5.88-21.277,0
+					l-31.42,31.419l-67.18-67.179C136.71,3.529,129.167-0.006,120.772,0c-16.384-0.006-29.663,13.327-29.651,29.783
+					c0,8.517,3.602,16.147,9.307,21.575l66.923,66.935L4.408,281.227l0,0c-5.877,5.875-5.877,15.4,0,21.278l191.7,191.702
+					c5.877,5.88,15.406,5.88,21.277,0h0.006l236.309-236.303C459.568,252.03,459.568,242.501,453.699,236.629z M335.99,291.751H78.182
+					l173.251-173.254l128.904,128.91L335.99,291.751z"/>
+				<path d="M501.348,391.081l-35.654-61.754c-0.187-0.35-0.374-0.7-0.596-1.026l-0.081-0.14l-0.023,0.011
+					c-1.809-2.496-4.714-4.13-8.073-4.13c-3.034,0-5.683,1.389-7.502,3.512l-0.094-0.046l-0.35,0.606
+					c-0.525,0.7-0.969,1.435-1.308,2.24l-34.85,60.365c-6.837,9.17-10.932,20.499-10.932,32.819c0,30.404,24.641,55.058,55.057,55.058
+					c30.429,0,55.058-24.653,55.058-55.058C512,411.382,508.021,400.193,501.348,391.081z"/>
+			</g>
+		  </svg>
+	</div>
+	<div class="tool">
+		<svg width="468pt" height="451pt" viewBox="0 0 468 451" preserveAspectRatio="xMidYMid meet" style="margin:10%;width:80%;height:80%;">
+			<g transform="translate(0,451) scale(0.199149,-0.199149)"
+			fill="#000000" stroke="none">
+			<path d="M86 2178 c-3 -29 -17 -186 -31 -348 -13 -162 -27 -312 -30 -332 l-5
+			-38 74 0 75 0 5 33 c3 17 10 73 15 122 28 240 89 348 235 416 78 36 177 49
+			372 49 l154 0 0 -945 0 -945 -250 0 -250 0 0 -75 0 -75 725 0 725 0 0 75 0 75
+			-250 0 -250 0 0 946 0 947 203 -6 c168 -4 213 -8 269 -26 130 -41 208 -120
+			248 -249 23 -75 50 -234 50 -299 l0 -43 75 0 75 0 0 29 c0 16 -13 183 -30 371
+			-16 188 -30 348 -30 356 0 12 -159 14 -1084 14 l-1084 0 -6 -52z"/>
+			</g>
+		</svg>
+		<div class="sub"><div></div></div>
+	</div>
+	<div class="tool">
+		<div id="colorpicker">
+			<div id="coloroverlay"></div>
+		</div>
+		<div class="sub" id="colorsub">
+			<div class="slider" id="colorslider">
+				<div class="bar"></div>
+				<div class="pin" id="colorpin"></div>
+			</div>
+		</div>
+	</div>
+	<div class="tool" id="usertool">
+		<svg x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+		<g>
+			<path d="M258.744,293.214c70.895,0,128.365-57.472,128.365-128.366c0-70.896-57.473-128.367-128.365-128.367
+				c-70.896,0-128.368,57.472-128.368,128.367C130.377,235.742,187.848,293.214,258.744,293.214z"/>
+			<path d="M371.533,322.432H140.467c-77.577,0-140.466,62.909-140.466,140.487v12.601h512v-12.601
+				C512,385.341,449.112,322.432,371.533,322.432z"/>
+		</g>
+		</svg>
+		<div class="sub"><a id="download" download="Sketch.jpg">
+			<svg height="1000" width="937.5" viewBox="0 0 937.5 1000" style="margin:15%;width:70%;height:70%;"><path d="M0 765.76v-72.224q0 -33.184 23.668 -56.608t56.852 -23.424 56.608 23.424 23.424 56.608v72.224q0 17.568 12.444 29.768t29.524 12.2h531.92q17.08 0 29.524 -12.2t12.444 -29.768v-72.224q0 -33.184 23.424 -56.608t56.608 -23.424 56.852 23.424 23.668 56.608v72.224q0 83.936 -59.292 143.472t-143.228 59.536h-531.92q-83.936 0 -143.228 -59.536t-59.292 -143.472zm154.696 -358.68q0 -33.184 23.912 -56.608 23.424 -23.424 56.608 -23.424t56.608 23.424l105.408 105.408v-344.04q0 -33.184 23.424 -56.608t56.608 -23.424 56.852 23.424 23.668 56.608v344.04l110.288 -110.288q23.424 -23.424 56.608 -23.424t56.608 23.424q23.912 23.424 23.912 56.852t-23.912 56.852l-246.928 246.928q-24.4 24.4 -57.096 24.4 -32.208 0 -56.608 -24.4l-242.048 -242.048q-23.912 -23.912 -23.912 -57.096z"/></svg>
+		</a></div>
+	</div>
+</div>
+<div id="sketch">
+	<canvas width="720" height="450" touch-action="none"></canvas>
+	<canvas width="720" height="450" id="tmp_canvas"></canvas>
+	<textarea id="text_tool"></textarea>
+</div>
+</div>
+
+</body>
+<!--build:js js/main.min.js-->
+  <script type="text/javascript" language="javascript" src="js/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" language="javascript" src="js/script.js"></script>
+  <!--<script type="text/javascript" language="javascript" src="js/bucket.js"></script>-->
+  <!-- /build -->
+</html>

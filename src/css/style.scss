@@ -1,0 +1,350 @@
+
+@mixin respond-to($val, $query) {
+    @media screen and ($val: $query) {
+      @content
+    }
+}
+
+@mixin flex($z: row, $x: stretch, $y: flex-start) {  // : defines default. Default means argument is optional
+  display: flex;
+  flex-direction: $z;
+  align-items:$x;
+  justify-content: $y;
+}
+
+@mixin fill($h: 100%, $w:100%) {
+  height: $h;
+  width: $w;
+}
+
+@mixin responsive($prop, $v1, $v2, $v3, $v4) {
+  @media screen and (min-width: 0px) {
+    #{$prop}:#{$v1};
+  }
+  @media screen and (min-width: 500px) {
+    #{$prop}:#{$v2};
+  }
+  @media screen and (min-width: 700px) {
+    #{$prop}:#{$v3};
+  }
+  @media screen and (min-width: 900px) {
+    #{$prop}:#{$v4};
+  }
+}
+
+
+
+
+html {
+  box-sizing: border-box;
+  @include fill();
+  @include responsive(font-size, 14px,16px,18px,20px);
+  //@include responsive(font-size, 14px,16px,18px,20px);
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'ProximaNova', 'Times', sans-serif;
+  margin: 0;
+  background: url(../img/background2.png) transparent top center repeat;
+  @include fill();
+}
+
+#main{
+  @include fill();
+  padding:2%;
+  @include respond-to(orientation, landscape) {
+    @include flex();
+  }
+  @include respond-to(orientation, portrait) {
+    @include flex(column);
+  }
+}
+
+canvas{
+  box-sizing: border-box;
+  background: white;
+  overflow: hidden;
+  cursor: crosshair;
+  @include responsive(border,'2px solid black','3px solid black','4px solid black','5px solid black');
+  @include responsive(border-radius, 7px, 8px, 9px, 10px);
+}
+#tmp_canvas {
+  position:absolute;
+  top:0;
+  left:0;
+  background: transparent;
+}
+
+#toolbar{
+  @include respond-to(orientation, landscape) {
+    @include flex(column, flex-start, space-between);
+    @include fill($w:10%);
+  }
+  @include respond-to(orientation, portrait) {
+    @include flex(row, flex-start, space-between);
+    @include fill($h:10%);
+  }
+}
+
+.tool{
+  @include respond-to(orientation, landscape) {
+    @include fill($w:88%,$h:15%);
+  }
+  @include respond-to(orientation, portrait) {
+    @include fill($w:15%,$h:88%);
+  }
+  @include responsive(border,'2px solid black','3px solid black','4px solid black','5px solid black');
+  @include responsive(border-radius, 7px, 8px, 9px, 10px);
+  background:white;
+  transition: background .3s;
+  position: relative;
+  cursor: pointer;
+  svg{
+    @include fill();
+  }
+  &:hover, &:active, &:focus {
+    background: grey;
+    svg * {
+      stroke:white;
+      transition: stroke .3s;
+    }
+    svg path {
+      fill:white;
+      transition: fill .3s;
+    }
+    #coloroverlay {
+      background: rgba(100,100,100,0.6);
+      transition: background .3s;
+    }
+  }
+  /*& .sub div{
+    opacity:0;
+    transition: opacity 20ms;
+  }*/
+}
+.active-tool {
+  background: grey;
+  svg * {
+    stroke:white;
+  }
+  svg path {
+    fill:white;
+  }
+  #coloroverlay {
+    background: rgba(100,100,100,0.6);
+  }
+  & .sub:before {
+    content: '';
+    @include respond-to(orientation, landscape) {
+      @include responsive(left,-8px,-11px,-14px,-17px);
+      top:30%;
+      @include responsive(border-top,"6px solid transparent","9px solid transparent","12px solid transparent","15px solid transparent");
+      @include responsive(border-bottom,"6px solid transparent","9px solid transparent","12px solid transparent","15px solid transparent");
+      @include responsive(border-right,"6px solid black","9px solid black","12px solid black","15px solid black");
+      border-left:none;
+    }
+    @include respond-to(orientation, portrait) {
+      left: 30%;
+      @include responsive(top,-8px,-11px,-14px,-17px);
+      @include responsive(border-right,"6px solid transparent","9px solid transparent","12px solid transparent","15px solid transparent");
+      @include responsive(border-left,"6px solid transparent","9px solid transparent","12px solid transparent","15px solid transparent");
+      @include responsive(border-bottom,"6px solid black","9px solid black","12px solid black","15px solid black");
+      border-top:none;
+    }
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    z-index: -1;
+  }
+  /*& .sub div{
+    opacity:1 !important;
+    transition: opacity 20ms;
+  }*/
+}
+#colorpicker{
+  @include fill();
+  border-radius:5px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, magenta);
+  & #coloroverlay {
+    @include fill();
+  }
+}
+
+#sketch{
+  position:relative;
+  @include respond-to(orientation, landscape) {
+    @include fill($w:90%);
+  }
+  @include respond-to(orientation, portrait) {
+    @include fill($h:90%);
+  }
+}
+
+.sub {
+  z-index: 5;
+  pointer-events:none;
+  box-sizing: content-box;
+  background: grey;
+  position: absolute;
+  opacity: 0;
+  @include responsive(border,'2px solid black','3px solid black','4px solid black','5px solid black');
+  @include responsive(border-radius, 7px, 8px, 9px, 10px);
+  @include respond-to(orientation, landscape) {
+    @include flex(row, center, space-between);
+    @include responsive(top,-2px,-3px,-4px,-5px);
+    @include fill($w:0,$h:100%);
+    @include responsive(left,122%,120%,118%,116%);
+  }
+  @include respond-to(orientation, portrait) {
+    @include flex(column, center, space-between);
+    @include responsive(left,-2px,-3px,-4px,-5px);
+    @include fill($w:100%,$h:0);
+    top:116%;
+  }
+}
+.subtool{
+  border-radius:3px;
+  @include respond-to(orientation, landscape) {
+    @include fill($w:25%,$h:100%);
+  }
+  @include respond-to(orientation, portrait) {
+    @include fill($w:100%,$h:25%);
+  }
+  &:hover, &:active, &:focus {
+    background: black;
+    /*svg * {
+      stroke:white;
+      transition: stroke .3s;
+    }
+    svg path {
+      fill:white;
+      transition: fill .3s;
+    }
+    #coloroverlay {
+      background: rgba(100,100,100,0.6);
+      transition: background .3s;
+    }*/
+  }
+}
+.active-subtool{
+  background:black;
+}
+#download{
+  border-radius:3px;
+  &:hover, &:active, &:focus {
+    background: black;
+  }
+  @include fill();
+}
+#sizetext{
+  @include respond-to(orientation, landscape) {
+    display: inline;
+  }
+  @include respond-to(orientation, portrait) {
+    display: none;
+  }
+}
+.subtext{
+  @include respond-to(orientation, landscape) {
+    @include responsive(margin-left,8px,12px,15px,18px);
+    @include responsive(margin-right,16px,12px,9px,6px);
+    @include fill($w: 15%, $h: auto);
+    padding-top:0;
+  }
+  @include respond-to(orientation, portrait) {
+    margin-right:0;
+    @include fill($h: 15%, $w: auto);
+    padding-top:40%;
+  }
+}
+.slider {
+  @include respond-to(orientation, landscape) {
+    @include responsive(padding-top,10px,12px,16px,20px);
+  }
+  @include respond-to(orientation, portrait) {
+    @include responsive(padding-left,8px,12px,14px,17px);
+  }
+}
+
+.bar{
+  @include respond-to(orientation, landscape) {
+    @include responsive(height,3px,4px,5px,6px);
+    width: 88%;
+    margin:0 20px;
+  }
+  @include respond-to(orientation, portrait) {
+    @include responsive(width,3px,4px,5px,6px);
+    height: 88%;
+    margin:20px 0;
+  }
+  background-color:rgb(155,155,155);
+}
+.pin{
+  position:relative;
+  border-radius:100%;
+  @include respond-to(orientation, landscape) {
+    @include responsive(margin-top,-13px,-17px,-20px,-23px);
+    top:0;
+  }
+  @include respond-to(orientation, portrait) {
+    @include responsive(margin-left,-10px,-13px,-15px,-17px);
+    @include responsive(top, -33px, -36px, -40px, -42px);
+  }
+  @include responsive(width,20px,29px,34px,40px);
+  @include responsive(height,20px,29px,34px,40px);
+  background-color:black;
+  transform:translateX(0px);
+  transform:translateY(0px);
+  border:3px solid black;
+  box-sizing:border-box;
+}
+.clearer{
+  @include fill($w:5%,$h:10%);
+}
+#colorsub {
+  justify-content: center;
+  @include respond-to(orientation, landscape) {
+    background: linear-gradient(to right, black, red, yellow, green, aqua, blue, magenta, white);
+  }
+  @include respond-to(orientation, portrait) {
+    background: linear-gradient(to top, black, red, yellow, green, aqua, blue, magenta, white);
+  }
+}
+#sizeslider{
+  @include respond-to(orientation, landscape) {
+    @include fill($w: 80%, $h: auto);
+  }
+  @include respond-to(orientation, portrait) {
+    @include fill($h: 75%, $w: auto);
+  }
+}
+#colorslider{
+  @include respond-to(orientation, landscape) {
+    @include fill($w: 90%, $h: auto);
+  }
+  @include respond-to(orientation, portrait) {
+    @include fill($h: 90%, $w: auto);
+  }
+}
+
+#text_tool {
+    position: absolute;
+    border: 1px dashed black;
+    outline: 0;
+    display: none;
+    font: 10px Verdana;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'ProximaNova', 'Times', sans-serif;
+    @include responsive(font-size, 14px,16px,18px,20px);
+}
+
+@font-face {
+  font-family: 'ProximaNova';
+  src: url("../fonts/proximanova-semibold-webfont.eot");
+  src: url("../fonts/proximanova-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/proximanova-semibold-webfont.woff") format("woff"), url("../fonts/proximanova-semibold-webfont.ttf") format("truetype");
+}
